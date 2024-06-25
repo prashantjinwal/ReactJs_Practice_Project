@@ -6,6 +6,8 @@ const ResultModel =  forwardRef( function ResultModel({ onReset, targetTime, Rem
     const useLost = RemainingTime <= 0
     const formattedRemainingTime = ( RemainingTime/1000 ).toFixed(2);
 
+    const score = Math.round((1 - RemainingTime / (targetTime * 1000)) * 100)
+
     useImperativeHandle(ref, () => {
         return{
             open(){
@@ -18,6 +20,7 @@ const ResultModel =  forwardRef( function ResultModel({ onReset, targetTime, Rem
     return(
         <dialog ref={dialog} className="result-modal" >
             {useLost && <h2>You Lost</h2>}
+            {!useLost && <h2>Your score: {score}</h2>}
             <p>
                 the target time was <strong>{targetTime} seconds </strong> 
             </p>
