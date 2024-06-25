@@ -1,8 +1,9 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
 
-const ResultModel =  forwardRef( function ResultModel({ result, targetTime}, ref){
+const ResultModel =  forwardRef( function ResultModel({ result, targetTime, RemainingTime}, ref){
 
     const dialog = useRef()
+    const useLost = RemainingTime <= 0
 
     useImperativeHandle(ref, () => {
         return{
@@ -15,7 +16,7 @@ const ResultModel =  forwardRef( function ResultModel({ result, targetTime}, ref
 
     return(
         <dialog ref={dialog} className="result-modal" >
-            <h2>You {result}</h2>
+            {useLost && <h2>You Lost</h2>}
             <p>
                 the target time was <strong>{targetTime} seconds </strong> 
             </p>
