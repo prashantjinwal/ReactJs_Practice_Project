@@ -17,6 +17,10 @@ export default function ({title, targetTime}){
         dialog.current.open();
     }
 
+    function handleReset(){
+        setRemainingTime(targetTime * 1000)
+    }
+
     function handleTimer(){
         timer.current = setInterval(()=>{
            setRemainingTime(prevRemainingTime => prevRemainingTime-10)
@@ -31,7 +35,7 @@ export default function ({title, targetTime}){
 
     return(
         <>
-        <ResultModel ref={dialog} targetTime={targetTime} result={"lost"} RemainingTime={RemainingTime} />
+        <ResultModel ref={dialog} targetTime={targetTime} result={"lost"} RemainingTime={RemainingTime} onReset={handleReset} />
         <section className="challenge">
             <h2>{title}</h2>
          
