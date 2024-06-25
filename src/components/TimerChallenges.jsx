@@ -11,7 +11,7 @@ export default function ({title, targetTime}){
     function handleTimer(){
         timer.current = setTimeout(()=>{
             setExpiredTime(true)
-            dialog.current.showModal()
+            dialog.current.open()
         }, targetTime*1000)
 
         setTimerStart(true)
